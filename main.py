@@ -3,10 +3,11 @@ import discord
 from discord.ext import commands
 
 # Botun çalıştığını görebilmek için TOKEN kısmına kendi bot token'ınızı koymalısınız.
-TOKEN = 'BURAYA_BOT_TOKENİNİZİ_YAZIN'
-
+TOKEN = ''
+intents = discord.Intents.default()
+intents.message_content = True
 # Botumuzun çalışacağı prefix (ön ek) belirlenir. Bu örnekte, komutlar için ön ek olarak "!" kullanıyoruz.
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!',intents=intents)
 
 # Bot çevrimiçi olduğunda çalışan olay
 @bot.event
@@ -39,6 +40,5 @@ async def on_command_error(ctx, error):
 
 # Bot tokeni ile giriş yap
 bot.run(TOKEN)
-
 
 
