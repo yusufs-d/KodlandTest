@@ -27,7 +27,18 @@ async def topla(ctx, a: int, b: int):
     # Komutu çalıştıran kişiye iki sayıyı toplar ve sonucu döner
     sonuc = a + b
     await ctx.send(f'{a} + {b} = {sonuc}')
+    
+@bot.command()
+async def sıfre(ctx, uzunluk):
+    elements = "+-/*!&$#?=@<>"
+    password = ""
+    pass_length = int(input("Enter pass length: "))
 
+    for i in range(pass_length):
+        password += random.choice(elements)
+    
+    await ctx.send(f'Şifreniz: {password}')
+    
 # Hata yönetimi: Hataları yakalayarak kullanıcıya daha dostça bir mesaj gösterelim
 @bot.event
 async def on_command_error(ctx, error):
@@ -37,6 +48,8 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.CommandNotFound):
         # Eğer geçersiz bir komut girilirse kullanıcıyı bilgilendirir
         await ctx.send('Bu geçerli bir komut değil!')
+
+
 
 # Bot tokeni ile giriş yap
 bot.run(TOKEN)
